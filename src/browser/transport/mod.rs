@@ -166,7 +166,7 @@ impl Transport {
             params_string
         );
 
-        let response_result = util::Wait::new(Duration::from_secs(3 * 60), Duration::from_millis(5))
+        let response_result = util::Wait::new(Duration::from_secs(10 * 60), Duration::from_millis(5))
             .until(|| response_rx.try_recv().ok());
         trace!("received response for: {} {:?}", &call_id, params_string);
         protocol::parse_response::<C::ReturnObject>((response_result?)?)
